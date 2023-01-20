@@ -1,0 +1,285 @@
+%--------------------------------------------------------------%
+%   Style File for Template File for SD PBL(3)                 %
+%--------------------------------------------------------------%
+
+%--------------------------------------------------------------
+%   Other style include
+%--------------------------------------------------------------
+\usepackage{multicol}
+\usepackage{epsf}
+\usepackage{graphics}
+\usepackage{boxedminipage}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ascmac}
+\usepackage{enumerate}
+\usepackage{url}
+
+%--------------------------------------------------------------
+%   Define tbcaption and fgcaption
+%--------------------------------------------------------------
+\def\tbcaption{\def\@captype{table}\caption}
+\def\fgcaption{\def\@captype{figure}\caption}
+
+\def\term#1{
+	{\bf #1}
+}
+
+\def\path#1{
+	\texttt{#1}
+}
+
+
+%----------------------------------------------------------------
+%   Page Layout
+%----------------------------------------------------------------
+\headheight=0zw
+\topmargin=-0.54cm
+\headsep=0cm
+\voffset=0.0cm
+\hoffset=0cm
+\oddsidemargin=-0.54cm  \evensidemargin=-0.54cm
+\textheight=25.7cm
+\textwidth=17.0cm
+\footskip=0cm
+\columnsep=2.0zw
+
+
+\setlength{\textwidth}{17.0cm}
+\setlength{\textheight}{25.7cm}
+
+
+%----------------------------------------------------------------
+%   Redifine the selection command
+%----------------------------------------------------------------
+
+%  Redifine the select
+
+\renewcommand{\section}{
+	\@startsection{section}{1}{\z@}
+	{.5\Cvs \@plus.5\Cdp \@minus.2 \Cdp}
+	{.2\Cvs \@plus.3\Cdp}
+	{\reset@font\large\bfseries}}
+
+%  Redifine the subsection
+
+\renewcommand{\subsection}{%
+	\@startsection{subsection}{1}{\z@}
+	{.3\Cvs \@plus.5\Cdp \@minus.2 \Cdp}
+	{.2\Cvs \@plus.3\Cdp}
+	{\reset@font\bfseries}}
+
+\renewcommand{\subsubsection}{
+	\@startsection{subsubsection}{1}{\z@}
+	{.2\Cvs \@plus.5\Cdp \@minus.2 \Cdp}
+	{.1\Cvs \@plus.3\Cdp}
+	{\reset@font\bfseries}}
+
+
+
+%----------------------------------------------------------------
+%  Header
+%----------------------------------------------------------------
+%  Title
+\def\jtitle#1{
+	\vspace{2mm}
+    {\bf {\Large {#1}}\\
+    }\bigskip
+}
+
+\def\2jtitle#1#2{
+	\vspace{2mm}
+    {\bf {\Large {#1}}\\
+	\smallskip ――{#2}――}\\ \bigskip
+}
+
+\def\etitle#1{
+	\footnotetext{{\small
+	#1
+	}}
+}
+
+
+%----------------------------------------------------------------
+%  Name
+%----------------------------------------------------------------
+
+\newenvironment{authors}{\Large}{\vspace{2mm}}
+
+
+\newenvironment{eauthors}{\small}{\vspace{2mm}}
+
+
+\def\name#1#2{
+\ifnum#1=1
+	#2$^\dag$
+\else
+	\ifnum#1=2
+	#2$^{\dag\dag}$
+	\else
+		\ifnum#1=3
+		#2 $^\ddag$
+		\else
+			\ifnum#1=4
+			#2$^{\ddag\ddag}$
+			\else
+				\ifnum#1=13
+				#2$^{\dag\ddag}$
+				\else
+				#2 $^{\dag\ddag\ddag}$
+				\fi
+			\fi
+		\fi
+	\fi
+\fi
+}
+
+
+
+%-----------------------------------------------------------
+% author (e)
+%-----------------------------------------------------------
+
+\def\ename#1#2{
+	\footnotetext[#1]{
+	\hspace{3mm}#2
+	}
+}
+
+
+%-----------------------------------------------------------
+
+\def\eaff#1#2{
+\ifnum#1=1%
+  \footnotetext{{\scriptsize #2 (\dag)}}
+\else
+	\ifnum#1=2%
+	  \footnotetext{{\scriptsize #2 (\dag\dag)}}
+	\else
+		\ifnum#1=3%
+		  \footnotetext{{\scriptsize #2 (\ddag)}}
+		\else
+		  \footnotetext{{\scriptsize #2 (\ddag\ddag)}}
+		\fi
+	\fi
+\fi
+}
+
+%-----------------------------------------------------------
+
+\def\addr#1{
+	\footnotetext{#1}
+}
+
+
+
+
+%--------------------------------------------------------------
+%  Footnotemark
+%--------------------------------------------------------------
+\def\@ipsfn#1{\ifcase#1\or \dag \or \dag\dag \or \ddag \or \ddag\ddag \or 0 \or 1 \or 2\or 3\or 4\or 5\or 6\or 7\or 8 \or 9 \or 10
+\else\@ctrerr\fi\relax}
+\def\ipsfn#1{\@ipsfn{\@nameuse{c@#1}}}
+
+\def\thefootnote{\ipsfn{footnote}}
+
+\def\initialize{
+\setcounter{footnote}{4}
+}
+
+
+%--------------------------------------------------------------
+%  Quotation
+%--------------------------------------------------------------
+
+\newenvironment{affiliation}{\Large}{\vspace{2mm}}
+
+
+\def\aff#1#2{
+\ifnum#1=1
+	\large{#2}$^\dag$
+\else
+	\ifnum#1=2
+	\large{#2}$^{\dag\dag}$
+	\else
+		\ifnum#1=3
+		\large{#2}$^\ddag$
+		\else
+		\large{#2}$^{\ddag\ddag}$
+		\fi
+	\fi
+\fi
+}
+
+
+
+
+%--------------------------------------------------------------
+%  Quotation marks
+%--------------------------------------------------------------
+
+\def\@biblabel#1{#1)}
+\def\@cite#1#2{{$^{\mbox{\scriptsize $#1$}}$%
+	\if@tempswa , #2\fi}$^{\mbox{\scriptsize $)$}}$ }
+
+
+
+
+%--------------------------------------------------------------
+%  Caption
+%--------------------------------------------------------------
+\long\def\@makecaption#1#2{
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}
+    \else\sbox\@tempboxa{#1\hskip1zw #2}
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1\hskip1zw #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+  \fi
+  \vskip\belowcaptionskip}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
+
+%--------------------------------------------------------------
+% Chart
+%--------------------------------------------------------------
+\def\fgref#1{\figurename\hskip1ex \ref{#1}}
+\def\tbref#1{\tablename\hskip1ex \ref{#1}}
+\def\eqref#1{式(\ref{#1})}
+
+
+%--------------------------------------------------------------
+%  Abstract
+%--------------------------------------------------------------
+
+\renewenvironment{abstract}{
+\begin{center}\begin{minipage}{14cm}{\bf Abstract:}\small
+}
+{\end{minipage}\end{center}}
+
+%--------------------------------------------------------------
+%  URL pointer
+%--------------------------------------------------------------
+\renewcommand{\url}{\begingroup \urlstyle{tt}\Url}
+
+
+
+
+\def\beginfooter#1#2{
+
+	\setlength{\baselineskip}{13.0pt}
+	{\small{\bf #1）
+	\hfill #2}}\\
+	\begin{center}
+}
+
+% End of the header
+\def\endfooter{
+\end{center}
+}
