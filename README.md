@@ -2,8 +2,8 @@
 
 - ### 使い方
 ```bash
-git clone sdpbl3
-cd sdpbl3
+git clone git@github.com:SO0O0/sdpbl3-tex.git
+cd sdpbl3-tex
 
 # texファイルを編集
 vi sdpbl.tex
